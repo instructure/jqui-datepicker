@@ -1,6 +1,7 @@
 {
   "name": "jqui-datepicker",
   "version": "0.1.0",
+  "main": "main.js",
   "authors": [
     "Ryan Florence <rpflorence@gmail.com>"
   ],
