@@ -24,10 +24,23 @@
     "showOtherMonths", "showWeek", "stepMonths", "weekHeader", "yearRange",
     "yearSuffix"];
 
+  var events = ['onClose', 'onSelect'];
+
   return Ember.TextField.extend({
     initDatepicker: function() {
-      this.$().datepicker(this.getProperties.apply(this, options));
+      var properties = this.getProperties.apply(this, options);
+      this.proxyDatepickerEvents(properties);
+      this.$().datepicker(properties);
     }.on('didInsertElement'),
+
+    proxyDatepickerEvents: function(properties) {
+      var component = this;
+      for (var i = 0, l = events.length; i < l; i++) {
+        properties[events[i]] = function() {
+          component.sendAction.apply(component, [events[i]].concat(arguments));
+        };
+      }
+    },
 
     destroyDatepicker: function() {
       this.$().datepicker('destroy');

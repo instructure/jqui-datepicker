@@ -2,5 +2,10 @@
 
 <p>Date is: {{date}}</p>
 
-{{jqui-datepicker value=date yearRange="2013:2014"}}
+{{jqui-datepicker
+  value=date
+  yearRange="2013:2014"
+  onSelect="datepickerSelect"
+  onClose="datepickerClosed"
+}}
 
